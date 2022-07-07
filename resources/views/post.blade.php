@@ -21,7 +21,7 @@
             <h1>{!! $post->title !!}</h1>
 
             <div>
-                accessing php within Blade
+{{--                accessing php within Blade--}}
                 {!! $post->body !!}
             </div>
         </article>
