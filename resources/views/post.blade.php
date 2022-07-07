@@ -1,14 +1,31 @@
-<!DOCTYPE html>
+{{--ALTERNATIVE APPROACH--}}
 
-<title>My Blog</title>
-<link rel="stylesheet" href="/app.css">
+{{--@extends('components.layout')--}}
 
-<body>
-    <article>
-        <?= $post; ?>
-    </article>
+{{--@section('content')--}}
+{{--    <article>--}}
+{{--        <h1>{!! $post->title !!}</h1>--}}
 
-    <a href="/">Go Back</a>
-</body>
+{{--        <div>--}}
+{{--            --}}{{--accessing php within Blade--}}
+{{--            {!! $post->body !!}--}}
+{{--        </div>--}}
+{{--    </article>--}}
 
-</html>
+{{--    <a href="/">Go Back</a>--}}
+{{--@endsection--}}
+
+<x-layout>
+    <x-slot name="slot">
+        <article>
+            <h1>{!! $post->title !!}</h1>
+
+            <div>
+                accessing php within Blade
+                {!! $post->body !!}
+            </div>
+        </article>
+
+        <a href="/">Go Back</a>
+    </x-slot>
+</x-layout>
