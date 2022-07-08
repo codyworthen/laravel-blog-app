@@ -20,8 +20,16 @@ Route::get('/', function () {
     ]);
 });
 
-Route::get('posts/{post}', function ($id) {
+// route model binding -- wildcard name needs to match argument name
+// wildcard: {post:slug}, argument: $post
+Route::get('posts/{post:slug}', function (Post $post) {
     return view('post', [
-        'post' => Post::find($id)
+        'post' => $post
+    ]);
+});
+
+Route::get('categories/{category}', function (Category $category) {
+    return view('posts', [
+        'posts' => $category->posts
     ]);
 });
