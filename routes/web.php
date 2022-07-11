@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Category;
 use App\Models\Post;
 use Illuminate\Support\Facades\Route;
 
@@ -28,7 +29,7 @@ Route::get('posts/{post:slug}', function (Post $post) {
     ]);
 });
 
-Route::get('categories/{category}', function (Category $category) {
+Route::get('categories/{category:slug}', function (Category $category) {
     return view('posts', [
         'posts' => $category->posts
     ]);
