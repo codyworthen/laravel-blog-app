@@ -2,20 +2,21 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Category;
 use App\Models\Post;
 
 class PostController extends Controller {
 	public function index() {
-		return view('posts', [
-			'posts' => Post::latest()->filter(request(['search']))->get(), // calls scopeFilter() on Post model
-			'categories' => Category::all()
+		return view('posts.index', [
+			// calls scopeFilter() on Post model
+			'posts' => Post::latest()->filter(request(['search', 'category', 'author']))->paginate(9)->withQueryString(
+			),
 		]);
 	}
 	
 	public function show(Post $post) {
-		return view('post', [
+		return view('posts.show', [
 			'post' => $post
 		]);
 	}
+	
 }
