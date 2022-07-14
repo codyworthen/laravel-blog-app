@@ -1,7 +1,7 @@
 <x-layout>
     <section class="px-6 py-8">
         <main class="max-w-lg mx-auto mt-10 bg-gray-100 border border-gray-200 p-6 rounded-xl">
-            <h1 class="text-center font-bold text-xl">Register</h1>
+            <h1 class="text-center font-bold text-xl">Create Account</h1>
             <form method="POST" action="/register" class="mt-10">
                 @csrf
 
@@ -15,11 +15,12 @@
                            type="text"
                            name="name"
                            id="name"
+                           value="{{ old('name') }}"
                            required
                     >
-                    {{--                        @error('username')--}}
-                    {{--                        <p class="text-red-500 text-sx mt-2">{{ $message }}</p>--}}
-                    {{--                        @enderror--}}
+                    @error('name')
+                    <p class="text-red-500 text-sx mt-2">{{ $message }}</p>
+                    @enderror
                 </div>
 
                 {{-- Username --}}
@@ -32,11 +33,12 @@
                            type="text"
                            name="username"
                            id="username"
+                           value="{{ old('username') }}"
                            required
                     >
-                    {{--                        @error('username')--}}
-                    {{--                        <p class="text-red-500 text-sx mt-2">{{ $message }}</p>--}}
-                    {{--                        @enderror--}}
+                    @error('username')
+                    <p class="text-red-500 text-sx mt-2">{{ $message }}</p>
+                    @enderror
                 </div>
 
                 {{-- Email --}}
@@ -49,11 +51,12 @@
                            type="email"
                            name="email"
                            id="email"
+                           value="{{ old('email') }}"
                            required
                     >
-                    {{--                        @error('username')--}}
-                    {{--                        <p class="text-red-500 text-sx mt-2">{{ $message }}</p>--}}
-                    {{--                        @enderror--}}
+                    @error('email')
+                    <p class="text-red-500 text-sx mt-2">{{ $message }}</p>
+                    @enderror
                 </div>
 
                 {{-- Password --}}
@@ -68,19 +71,28 @@
                            id="password"
                            required
                     >
-                    {{--                        @error('username')--}}
-                    {{--                        <p class="text-red-500 text-sx mt-2">{{ $message }}</p>--}}
-                    {{--                        @enderror--}}
+                    @error('password')
+                    <p class="text-red-500 text-sx mt-2">{{ $message }}</p>
+                    @enderror
                 </div>
 
                 {{-- Submit Button --}}
-                <div class="mb-6">
+                <div class="mb-6 text-center">
                     <button class="bg-blue-400 text-white rounded py-2 px-4 hover:bg-blue-500"
                             type="submit"
                     >
                         Submit
                     </button>
                 </div>
+
+                {{-- Shows errors at bottom of form --}}
+                {{--                @if($errors->any())--}}
+                {{--                    <ul>--}}
+                {{--                        @foreach($errors->all() as $error)--}}
+                {{--                            <li class="text-red-500 text-xs">{{ $error }}</li>--}}
+                {{--                        @endforeach--}}
+                {{--                    </ul>--}}
+                {{--                @endif--}}
 
             </form>
         </main>

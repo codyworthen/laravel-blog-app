@@ -5,6 +5,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com">
 <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
 <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+<script src="https://kit.fontawesome.com/bc843b7795.js" crossorigin="anonymous"></script>
 
 <body style="font-family: Open Sans, sans-serif">
     <section class="px-6 py-8">
@@ -15,10 +16,23 @@
                 </a>
             </div>
 
-            <div class="mt-8 md:mt-0">
-                <a href="/" class="text-xs font-bold uppercase">Home Page</a>
+            <div class="mt-8 md:mt-0 flex items-center">
+                @auth
+                    <div>
+                        <i class="fa-solid fa-user"></i> {{ auth()->user()->name }}
 
-                <a href="#" class="bg-blue-500 ml-3 rounded-full text-xs font-semibold text-white uppercase py-3 px-5">
+                        <form method="POST" action="/logout" class="text-sm font-semibold text-blue-500">
+                            @csrf
+                            <button type="submit">Log Out</button>
+                        </form>
+                    </div>
+                @else
+                    <a href="/register" class="text-xs font-bold uppercase">Create Account</a>
+                    <a href="/login" class="ml-3 text-xs font-bold uppercase">Log In</a>
+                @endauth
+
+                <a href="#"
+                   class="bg-blue-500 ml-3 rounded-full text-xs font-semibold text-white uppercase py-3 px-5">
                     Subscribe for Updates
                 </a>
             </div>
@@ -54,4 +68,7 @@
             </div>
         </footer>
     </section>
+
+    <x-flash/>
+    
 </body>
