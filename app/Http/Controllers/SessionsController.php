@@ -16,15 +16,16 @@ class SessionsController extends Controller {
 			'password' => ['required']
 		]);
 		
-		if (auth()->attempt($attributes)) {
-			session()->regenerate();
-			$name = auth()->user()->name;
-			return redirect('/')->with('success', $name . ' has been successfully logged in.');
-		} else {
+		if (!auth()->attempt($attributes)) {
 			return back()
 				->withInput()
 				->withErrors(['password' => 'Invalid email or password']);
 		}
+		
+		session()->regenerate();
+		$name = auth()->user()->name;
+		
+		return redirect('/')->with('success', $name . ' has been successfully logged in.');
 	}
 	
 	public function destroy() {
