@@ -45,7 +45,12 @@ class Post extends Model
     
     public function author()
     {
-        return $this->belongsTo(User::class, 'user_id');
+        return $this->belongsTo(User::class, 'user_id'); // because author() doesn't match User::class
+    }
+    
+    public function comments()
+    {
+        return $this->hasMany(Comment::class);
     }
 }
  
