@@ -10,7 +10,8 @@ return new class extends Migration {
      *
      * @return void
      */
-    public function up() {
+    public function up()
+    {
         Schema::create('posts', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id');
@@ -23,13 +24,14 @@ return new class extends Migration {
             $table->timestamp('published_at')->nullable();
         });
     }
-
+    
     /**
      * Reverse the migrations.
      *
      * @return void
      */
-    public function down() {
+    public function down()
+    {
         Schema::dropIfExists('posts');
     }
 };
